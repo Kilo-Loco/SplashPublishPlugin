@@ -27,6 +27,8 @@ public extension Modifier {
         return Modifier(target: .codeBlocks) { html, markdown in
             var markdown = markdown.dropFirst("```".count)
 
+            print("returning modifier")
+
             guard !markdown.hasPrefix("no-highlight") else {
                 return html
             }

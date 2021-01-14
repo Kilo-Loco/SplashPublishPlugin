@@ -18,7 +18,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/johnsundell/publish.git", from: "0.5.0"),
-        .package(url: "https://github.com/johnsundell/splash.git", from: "0.12.0")
+        .package(url: "https://github.com/kilo-loco/splash.git", .branch("dev"))
     ],
     targets: [
         .target(
