@@ -27,10 +27,12 @@ public extension Modifier {
         return Modifier(target: .codeBlocks) { html, markdown in
             var markdown = markdown.dropFirst("```".count)
 
-            print(markdown)
-
             guard !markdown.hasPrefix("no-highlight") else {
                 return html
+            }
+            
+            if markdown.hasPrefix("swift") {
+                print(markdown)
             }
 
             markdown = markdown
