@@ -31,7 +31,7 @@ public extension Modifier {
                 return html
             }
             
-            if markdown.hasPrefix("swift") {
+            if markdown.prefix(5) == "swift" {
                 print(markdown)
             }
 
