@@ -39,6 +39,7 @@ public extension Modifier {
             if markdown.hasPrefix("swift") {
                 grammar = SwiftGrammar()
             } else if markdown.hasPrefix("python") {
+                print("PYTHON GRAMMAR")
                 grammar = PythonGrammar()
             } else if markdown.hasPrefix("dart") {
                 grammar = DartGrammar()
