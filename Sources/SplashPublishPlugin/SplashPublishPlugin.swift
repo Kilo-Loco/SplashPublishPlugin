@@ -39,7 +39,6 @@ public extension Modifier {
             if markdown.hasPrefix("swift") {
                 grammar = SwiftGrammar()
             } else if markdown.hasPrefix("python") {
-                print("PYTHON GRAMMAR")
                 grammar = PythonGrammar()
             } else if markdown.hasPrefix("dart") {
                 grammar = DartGrammar()
@@ -49,7 +48,7 @@ public extension Modifier {
 
             let highlighter = SyntaxHighlighter(
                 format: format,
-                grammar: grammar
+                grammar: PythonGrammar()
             )
             let highlighted = highlighter.highlight(String(markdown))
             return "<pre><code>" + highlighted + "\n</code></pre>"
