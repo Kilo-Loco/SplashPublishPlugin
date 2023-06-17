@@ -22,7 +22,6 @@ public extension Plugin {
 
 public extension Modifier {
     static func splashCodeBlocks(withFormat format: HTMLOutputFormat = .init()) -> Self {
-        let highlighter = SyntaxHighlighter(format: format)
 
         return Modifier(target: .codeBlocks) { html, markdown in
             var markdown = markdown.dropFirst("```".count)
@@ -35,7 +34,22 @@ public extension Modifier {
                 .drop(while: { !$0.isNewline })
                 .dropFirst()
                 .dropLast("\n```".count)
+            
+            var grammar: Grammar = SwiftGrammar()
+            if markdown.hasPrefix("swift") {
+                grammar = SwiftGrammar()
+            } else if markdown.hasPrefix("python") {
+                grammar = PythonGrammar()
+            } else if markdown.hasPrefix("dart") {
+                grammar = DartGrammar()
+            } else if markdown.hasPrefix("kotl") || markdown.hasPrefix("kotlin") {
+                grammar =  KotlinGrammar()
+            }
 
+            let highlighter = SyntaxHighlighter(
+                format: format,
+                grammar: grammar
+            )
             let highlighted = highlighter.highlight(String(markdown))
             return "<pre><code>" + highlighted + "\n</code></pre>"
         }
